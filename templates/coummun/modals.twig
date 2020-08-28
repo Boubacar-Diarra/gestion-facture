@@ -1,0 +1,259 @@
+<div class="modal fade" id="addCommandeModal" tabindex="-1" role="dialog" aria-labelledby="addCommande" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addCommandeModalLabel">Ajout d'une commande</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{ form_start(formCommande) }}
+                {{ form_widget(formCommande) }}
+                <div class="form-group">
+                    <button class="btn s-card" type="submit">Enregistrer</button>
+                </div>
+                {{ form_end(formCommande) }}
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+{#addClientModal#}
+<div class="modal fade" id="addClientModal" tabindex="-1" role="dialog" aria-labelledby="addCommande" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addClientModalLabel">Ajout d'un client</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{ form_start(formClient) }}
+                {{ form_widget(formClient) }}
+                <div class="form-group">
+                    <button class="btn s-card" type="submit">Enregistrer</button>
+                </div>
+                {{ form_end(formClient) }}
+            </div>
+        </div>
+    </div>
+</div>
+{#modePaimentModal#}
+<div class="modal fade" id="modePaimentModal" tabindex="-1" role="dialog" aria-labelledby="addCommande" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modePaimentModalLabel">Choisissez un mode de paiement</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div style="background-color: #151528" class="modal-body">
+                <div class="s-card" data-dismiss="modal" data-toggle="modal" data-target="#paimentChequeModal">Payer par cheque</div>
+                <div class="s-card" data-dismiss="modal" data-toggle="modal" data-target="#paimentEspeceModal">Payer en espèce</div>
+            </div>
+        </div>
+    </div>
+</div>
+{#paimentChequeModal#}
+<div class="modal fade" id="paimentChequeModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="paimentChequeModalLabel">Paiment par cheque</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="paiementCheque" class="modal-body">
+                {{ form_start(formCheque) }}
+                {{ form_widget(formCheque) }}
+                <div class="form-group">
+                    <button class="btn s-card" type="submit">Enregistrer</button>
+                </div>
+                {{ form_end(formCheque)}}
+            </div>
+        </div>
+    </div>
+</div>
+{#paimentEspeceModal#}
+<div class="modal fade" id="paimentEspeceModal" tabindex="-1" role="dialog" aria-labelledby="addCommande" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="paimentEspeceModalLabel">Paiment en espèce</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="paiementEspece" class="modal-body">
+                {{ form_start(formPaiment) }}
+                {{ form_widget(formPaiment) }}
+                <div class="form-group">
+                    <button class="btn s-card" type="submit">Enregistrer</button>
+                </div>
+                {{ form_end(formPaiment)}}
+            </div>
+        </div>
+    </div>
+</div>
+{#addProduit#}
+<div class="modal fade" id="addProduitModal" tabindex="-1" role="dialog" aria-labelledby="addProduit" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="aaddProduitModalLabel">Ajout d'un Produit</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{ form_start(formProduit) }}
+                {{ form_widget(formProduit) }}
+                <div class="form-group">
+                    <button class="btn s-card" type="submit">Enregistrer</button>
+                </div>
+                {{ form_end(formProduit) }}
+            </div>
+        </div>
+    </div>
+</div>
+{#addFournisseurModal#}
+<div class="modal fade" id="addFournisseurModal" tabindex="-1" role="dialog" aria-labelledby="addCommande" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addClientModalLabel">Ajout Fournisseur</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{ form_start(formFournisseur) }}
+                {{ form_widget(formFournisseur) }}
+                <div class="form-group">
+                    <button class="btn s-card" type="submit">Enregistrer</button>
+                </div>
+                {{ form_end(formFournisseur) }}
+            </div>
+        </div>
+    </div>
+</div>
+{##########################################}
+
+<div class="modal fade" id="prsModal" tabindex="-1" role="dialog" aria-labelledby="prsModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5 class="modal-title" id="prsModalLabel">Produits en rupture</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <table class="table table-striped table-borderless">
+                    <thead>
+                    <tr>
+                        <th>Designation</th>
+                        <th>Type</th>
+                        <th>Prix de vente</th>
+                        <th>Prix d'achat</th>
+                        <th>Quantité Acheté Fournisseur</th>
+                        <th>Quantité Stock (apres vente)</th>
+                        <th>Fournisseur</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for c in produitsRupture %}
+                        <tr>
+                            <td>{{ c.designation }}</td>
+                            <td>{{ c.type }}</td>
+                            <td>{{ c.prix }}</td>
+                            <td>{{ c.getProduitFournisseurs[0].montant / c.getProduitFournisseurs[0].qte}}</td>
+                            <td>{{ c.getProduitFournisseurs[0].qte }}
+                            <td>{{ c.qteStock }}</td>
+                            <td>{{ c.getProduitFournisseurs[0].fournisseur.designation }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{##########################################}
+
+<div class="modal fade" id="frModal" tabindex="-1" role="dialog" aria-labelledby="frModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5 class="modal-title" id="frModalLabel">Factures en retard</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <table class="table table-hover table-striped table-borderless">
+                    <thead>
+                    <tr>
+                        <td>Reference</td>
+                        <td>Client</td>
+                        <td>Montant</td>
+                        <td>Montant Restant</td>
+                        <td>Etat</td>
+                        <td>Date de creation</td>
+                        <td>Num Commande</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for c in facturesRetard %}
+                        {% if c.commandes[0].getEtat == 'Confirmer' %}
+                        <tr>
+                            <td>{{ c.id }}</td>
+                            <td>{{ c.commandes[0].client.nom }}</td>
+                            <td>{{ c.montant }}</td>
+                            <td>{{ c.montantRestant }}</td>
+                            <td>{{ c.etat }}</td>
+                            <td>{{ c.getCreatedAt|date('d/m/y') }}</td>
+                            <td>{{ c.commandes[0].id }}</td>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>{##########################################}
+
+<div class="modal fade" id="ppaModal" tabindex="-1" role="dialog" aria-labelledby="ppaModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5 class="modal-title" id="ppaModalLabel">Produits les plus fréquents</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <table class="table table-hover table-striped table-borderless">
+                    <thead>
+                    <tr>
+                        <td>Designation</td>
+                        <td>Fournisseurs</td>
+                        <td>Type</td>
+                        <td>Prix</td>
+                        <td>Frequence (%)</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for c in produitsDemande %}
+                        <tr>
+                            <td>{{ c.designation }}</td>
+                            <td>{{ c.getProduitFournisseurs[0].fournisseur.designation }}</td>
+                            <td>{{ c.type }}</td>
+                            <td>{{ c.prix }}</td>
+                            <td>{{ c.frequence}}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

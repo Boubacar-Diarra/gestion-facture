@@ -1,0 +1,194 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #F5F4F9;
+            margin: auto;
+            height: 100vh;
+            font-family: 'Comfortaa', cursive;
+            color: white;
+        }
+        .s-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #151528;
+            /*background-color: #151528;*/
+            width: 95vw;
+            padding: 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            overflow: auto;
+        }
+        .modal{
+            color: black;
+        }
+        nav{
+            background-color: #151528;
+            /*background-color: #151528;*/
+            box-shadow: none;
+        }
+        header{
+            padding: 30px 80px;
+            font-family: 'Comfortaa', cursive;
+        }
+        .modif-link{
+            color: black;
+        }
+        a:before{
+            position: absolute;
+            content: '';
+            bottom: 0;
+            transition: transform 0.25s;
+            height: 2px;
+            width: 100%;
+            background-color: #F2CAA7;
+            transform: scaleX(0);
+        }
+        a{
+            color: white;
+        }
+        a:hover{
+            text-decoration: none;
+            color: #F2CAA7;
+        }
+        a:hover:before{
+            transform: scaleX(1);
+        }
+        ::-webkit-scrollbar{
+            background-color: #023059;
+            width: 5px;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb{
+            background-color: #F2CAA7;
+        }
+        .btn{
+            background-color: #023059;
+            color: white;
+        }
+        .s-card{
+            transition: transform 0.5s;
+            cursor: pointer;
+            color: black;
+            background-color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 2px 2px 0 rgba(17, 17, 17, 0.38);
+        }
+        .s-card img{
+            width: 20%;
+            height: 100px;
+            padding: 10px;
+        }
+        .s-card:hover{
+            color: #F2CAA7;
+            transform: scale(1.1);
+        }
+        thead{
+        }
+        .b-card{
+            font-size: 0.6em;
+            background-color: #F5F4F9;
+            color: black;
+            width: 98%;
+            padding: 10px;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="s-container">
+        <div class="b-card">
+            <h5>Info facture</h5>
+            <table class="table table-borderless table-dark table-striped">
+                <thead>
+                <tr>
+                    <td>Reference</td>
+                    <td>Client</td>
+                    <td>Montant</td>
+                    <td>Montant Restant</td>
+                    <td>Etat</td>
+                    <td>Date de creation</td>
+                    <td>Num Commande</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>{{ c.id }}</td>
+                    <td>{{ c.commandes[0].client.nom }}</td>
+                    <td>{{ c.montant }}</td>
+                    <td>{{ c.montantRestant }}</td>
+                    <td>{{ c.etat }}</td>
+                    <td>{{ c.getCreatedAt|date('d/m/y') }}</td>
+                    <td>{{ c.commandes[0].id }}</td>
+                </tr>
+                </tbody>
+            </table>
+            <hr>
+            <h5>Bon de livraison <span style="font-size: 10px"> ( info produit )</span> </h5>
+            <table class="table table-borderless table-dark table-striped">
+                <thead>
+                <tr>
+                    <td>Designation</td>
+                    <td>Qte</td>
+                    <td>Prix unitaire</td>
+                </tr>
+                </thead>
+                <tbody>
+               {% for pp in c.commandes[0].getCommandeProduits %}
+                   <tr>
+                       <td>{{ pp.produit.designation }}</td>
+                       <td>{{ pp.qte }}</td>
+                       <td>{{ pp.produit.prix }}</td>
+                   </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <hr>
+            <h5>Info chèque</h5>
+            <table class="table table-borderless table-dark table-striped">
+                <thead>
+                <tr>
+                    <td>Numéro</td>
+                    <td>Intitule de la banque</td>
+                    <td>Proprietaire</td>
+                    <td>Montant</td>
+                    <td>Date de paiement</td>
+                </tr>
+                </thead>
+                <tbody>
+                {% for ch in c.cheque %}
+                <tr>
+                    <td>{{ ch.numero }}</td>
+                    <td>{{ ch.intitule }}</td>
+                    <td>{{ ch.proprietaire }}</td>
+                    <td>{{ ch.montant }}</td>
+                    <td>{{ ch.getCreatedAt|date('d/m/y') }}</td>
+                </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+            <h5>Info paiement espèce</h5>
+            <table class="table table-borderless table-dark table-striped">
+                <thead>
+                <tr>
+                    <td>Numéro</td>
+                    <td>Montant</td>
+                    <td>Date de paiement</td>
+                </tr>
+                </thead>
+                <tbody>
+                {% for ch in c.infoPaiementEspece %}
+                <tr>
+                    <td>{{ ch.id }}</td>
+                    <td>{{ ch.montant }}</td>
+                    <td>{{ ch.getCreatedAt|date('d/m/y') }}</td>
+                </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

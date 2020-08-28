@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #F5F4F9;
+            margin: auto;
+            height: 100vh;
+            font-family: 'Comfortaa', cursive;
+            color: white;
+        }
+        .s-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #151528;
+            /*background-color: #151528;*/
+            width: 95vw;
+            padding: 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            overflow: auto;
+        }
+        .modal{
+            color: black;
+        }
+        nav{
+            background-color: #151528;
+            /*background-color: #151528;*/
+            box-shadow: none;
+        }
+        header{
+            padding: 30px 80px;
+            font-family: 'Comfortaa', cursive;
+        }
+        .modif-link{
+            color: black;
+        }
+        ::-webkit-scrollbar{
+            background-color: #023059;
+            width: 5px;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb{
+            background-color: #F2CAA7;
+        }
+        .btn{
+            background-color: #023059;
+            color: white;
+        }
+        .s-card{
+            transition: transform 0.5s;
+            cursor: pointer;
+            color: black;
+            background-color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 2px 2px 0 rgba(17, 17, 17, 0.38);
+        }
+        .s-card img{
+            width: 20%;
+            height: 100px;
+            padding: 10px;
+        }
+        .s-card:hover{
+            color: #F2CAA7;
+            transform: scale(1.1);
+        }
+        a:hover:before{
+            transform: scale(0);
+        }
+        thead{
+        }
+        .b-card{
+            background-color: #F5F4F9;
+            color: black;
+            width: 70%;
+            padding: 50px;
+        }
+        .header-form{
+            background-color: #151528;
+            padding: 20px;
+            color: white;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="s-container" style="height: 100vh;">
+        <div class="b-card">
+            {% if error %}
+                <div class="alert alert-danger">Les identifiants saisis sont invalides</div>
+            {% endif %}
+            <br>
+            <div class="body-form">
+                <form method="post">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input placeholder="Votre émail" value="{{ app.session.get("email") }}" id="email" class="form-control" type="email" name="_username">
+                    </div>
+                    <div class="form-group">
+                        <label for="mdp">Mot de passe</label>
+                        <input placeholder="Votre mot de passe" value="{{ app.session.get("password") }}" id="mdp" class="form-control" type="password" name="_password">
+                    </div>
+                    <div class="form-group form-check">
+                        <input id="remember_me" name="_remember_me" class="form-check-input" type="checkbox">
+                        <label class="form-check-label" for="remember_me">Se souvenir de moi ?</label>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn s-card">Se connecter</button>
+                    </div>
+                </form>
+                <hr>
+                <a style="display: inline-block"  href="{{ path('add.user') }}" class="btn s-card">Créer un compte ici</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

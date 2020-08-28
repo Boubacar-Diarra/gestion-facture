@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #F5F4F9;
+            margin: auto;
+            height: 100vh;
+            font-family: 'Comfortaa', cursive;
+            color: white;
+        }
+        .s-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #151528;
+            /*background-color: #151528;*/
+            width: 95vw;
+            padding: 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            overflow: auto;
+        }
+        .modal{
+            color: black;
+        }
+        nav{
+            background-color: #151528;
+            /*background-color: #151528;*/
+            box-shadow: none;
+        }
+        header{
+            padding: 30px 80px;
+            font-family: 'Comfortaa', cursive;
+        }
+        .modif-link{
+            color: black;
+        }
+        ::-webkit-scrollbar{
+            background-color: #023059;
+            width: 5px;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb{
+            background-color: #F2CAA7;
+        }
+        .btn{
+            background-color: #023059;
+            color: white;
+        }
+        .s-card{
+            transition: transform 0.5s;
+            cursor: pointer;
+            color: black;
+            background-color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 2px 2px 0 rgba(17, 17, 17, 0.38);
+        }
+        .s-card img{
+            width: 20%;
+            height: 100px;
+            padding: 10px;
+        }
+        .s-card:hover{
+            color: #F2CAA7;
+            transform: scale(1.1);
+        }
+        a:hover:before{
+            transform: scale(0);
+        }
+        thead{
+        }
+        .b-card{
+            background-color: #F5F4F9;
+            color: black;
+            width: 70%;
+            padding: 50px;
+        }
+        .header-form{
+            background-color: #151528;
+            padding: 20px;
+            color: white;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="s-container" style="height: 100vh;">
+        <div class="b-card">
+            <div class="body-form">
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

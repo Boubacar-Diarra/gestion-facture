@@ -1,0 +1,317 @@
+n{#CommandeModal#}
+<div class="modal fade" id="CommandeModal" tabindex="-1" role="dialog" aria-labelledby="addCommande" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="CommandeModalLabel">Gestion de la commande</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-borderless">
+                    <thead>
+                        <tr>
+                            <th>Etat</th>
+                            <th>Client</th>
+                            <th>Produit-Qte</th>
+                            {#th>Qte</th>#}
+                            {#<th>Action</th>#}
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for c in commandes %}
+                        <tr>
+                            <td>{{ c.etat }}</td>
+                            <td>{{ c.client.nom }} {{ c.client.prenom }}</td>
+                            <td>
+                                <select class="form-control">
+                                    {% for s in c.commandeProduits  %}
+                                        <option>{{ s.produit.designation }} - {{ s.qte }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            {#
+                            <td>
+                                <select class="form-control">
+                                    {% for s in c.commandeProduits  %}
+                                        <option>{{ s.qte }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            #}
+                            <td>
+                                {% if c.etat == "En attente" %}
+                                <a title="modifer" class="modif-link" href="{{ path('modif.commande', {'id' : c.id}) }}">
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                    </svg>
+                                </a>
+
+                                <a title="confirmer" href="{{ path('confirmer.commande', {'id' : c.id}) }}" class="modif-link">
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check2-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M15.354 2.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L8 9.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                                        <path fill-rule="evenodd" d="M1.5 13A1.5 1.5 0 0 0 3 14.5h10a1.5 1.5 0 0 0 1.5-1.5V8a.5.5 0 0 0-1 0v5a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V3a.5.5 0 0 1 .5-.5h8a.5.5 0 0 0 0-1H3A1.5 1.5 0 0 0 1.5 3v10z"/>
+                                    </svg>
+                                </a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <hr>
+               <button type="button" data-dismiss="modal" class="btn s-card" data-toggle="modal" data-target="#addCommandeModal">Voulez vous ajouter une commande?</button>
+            </div>
+        </div>
+    </div>
+</div>
+{#ClientModal#}
+<div class="modal fade" id="ClientModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ClientModalLabel">Gestion  client</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-borderless">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Adresse</th>
+                            <th>Cni</th>
+                            <th>Téléphone</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for c in clients %}
+                        <tr>
+                            <td>{{ c.nom }}</td>
+                            <td>{{ c.prenom }}</td>
+                            <td>{{ c.adresse }}</td>
+                            <td>{{ c.cni }}</td>
+                            <td>{{ c.telephone }}</td>
+                            <td>
+                                <a title="modifier" class="modif-link" href="{{ path('modif.client', {'id' : c.id}) }}">
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                    </svg>
+                                </a>
+                                <a title="supprimer" class="modif-link" href="{{ path('supprimer.client', {'id' : c.id}) }}">
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                    </svg>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <hr>
+               <button type="button" class="btn s-card" data-dismiss="modal" data-toggle="modal" data-target="#addClientModal">Voulez vous ajouter un client?</button>
+        
+            </div>
+        </div>
+    </div>
+</div>
+{#ProduitModal#}
+<div class="modal fade" id="ProduitModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ProduitModalLabel">Gestion du produit</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-borderless">
+                    <thead>
+                        <tr>
+                            <th>Designation</th>
+                            <th>Type</th>
+                            <th>Prix de vente</th>
+                            <th>Prix d'achat</th>
+                            <th>Quantité Acheté Fournisseur</th>
+                            <th>Quantité Stock (apres vente)</th>
+                            <th>Fournisseur</th>
+                            {#<th>Action</th>#}
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for c in produits %}
+                        <tr>
+                            <td>{{ c.designation }}</td>
+                            <td>{{ c.type }}</td>
+                            <td>{{ c.prix }}</td>
+                            <td>{{ c.getProduitFournisseurs[0].montant / c.getProduitFournisseurs[0].qte}}</td>
+                            <td>{{ c.getProduitFournisseurs[0].qte }}
+                            <td>{{ c.qteStock }}</td>
+                            <td>{{ c.getProduitFournisseurs[0].fournisseur.designation }}</td>
+                            <td>
+                                {#<a class="modif-link" href="{{ path('modif.produit', {'id' : c.id}) }}">
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                    </svg>
+                                </a>
+                                {#<a class="modif-link" href="{{ path('supprimer.produit', {'id' : c.id}) }}">
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                    </svg>
+                                </a>#}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <hr>
+                <button type="button" class="btn s-card" data-dismiss="modal" data-toggle="modal" data-target="#addProduitModal">Voulez vous ajouter un produit?</button>
+            </div>
+        </div>
+    </div>
+</div>
+{#FournisseurModal#}
+<div class="modal fade" id="FournisseurModal" tabindex="-1" role="dialog" aria-labelledby="addCommande" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="FournisseurModalLabel">Gestion du fournisseur</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-borderless">
+                    <thead>
+                        <tr>
+                            <th>Designation</th>
+                            <th>Adresse</th>
+                            <th>Téléphone</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for c in fournisseurs %}
+                        <tr>
+                            <td>{{ c.designation }}</td>
+                            <td>{{ c.adresse }}</td>
+                            <td>{{ c.telephone }}</td>
+                            <td>{{ c.email }}</td>
+                            <td>
+                                <a title="modifier" class="modif-link" href="{{ path('modif.fournisseur', {'id' : c.id}) }}">
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                    </svg>
+                                </a>
+                                <a title="supprimer" class="modif-link" href="{{ path('supprimer.fournisseur', {'id' : c.id}) }}">
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                    </svg>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <hr>
+               <button type="button" class="btn s-card" data-dismiss="modal" data-toggle="modal" data-target="#addFournisseurModal">Voulez vous ajouter un fournisseur?</button>
+            </div>
+        </div>
+    </div>
+</div>
+{#FactureModal#}
+<div class="modal fade" id="FactureModal" tabindex="-1" role="dialog" aria-labelledby="facture" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="FactureModalLabel">Gestion de la facture</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-borderless">
+                    <thead>
+                    <tr>
+                        <th>Montant</th>
+                        <th>Montant Restant</th>
+                        <th>Etat</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for c in facture %}
+                        {% if c.commandes[0].getEtat == 'Confirmer' %}
+                        <tr>
+                            <td>{{ c.montant }}</td>
+                            <td>{{ c.montantRestant }}</td>
+                            <td>{{ c.etat }}</td>
+                            <td>{{ c.getCreatedAt|date('d/m/y') }}</td>
+                            <td>
+                                {#
+                                <a class="modif-link" href="{{ path('modif.facture', {'id' : c.id}) }}">
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                    </svg>
+                                </a>
+                                #}
+                                {%  if c.montantRestant %}
+                                    <a data-dismiss="modal" {% if c.montantRestant > 6000 %} data-target="#paimentChequeModal" {% else %} data-target="#modePaimentModal" {% endif %} onclick="updateAction('{{ path('payer.cheque.facture', {'id' : c.id}) }}', '{{ path('payer.espece.facture',{'id' : c.id}) }}')" data-dismiss="modal" data-toggle="modal" class="modif-link" href="#">Payer</a>
+                                {% endif %}
+                                <a title="imprimer" onclick="makePdf('{{ path('print.facture', {'id' : c.id}) }}')" href="#" class="modif-link">
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-printer" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M11 2H5a1 1 0 0 0-1 1v2H3V3a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2h-1V3a1 1 0 0 0-1-1zm3 4H2a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h1v1H2a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1z"/>
+                                        <path fill-rule="evenodd" d="M11 9H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1zM5 8a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H5z"/>
+                                        <path d="M3 7.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
+                                    </svg>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    //error modal
+    $('#error').modal('show')
+    $('#error').modal({
+        keyboard: false
+    })
+    function updateAction(path, path2) {
+        let pc = document.getElementById('paiementCheque');
+        pc = pc.children[0]
+        pc.action = path;
+
+        pc = document.getElementById('paiementEspece');
+        pc = pc.children[0]
+        pc.action = path2
+    }
+
+    function makePdf(path) {
+        let iframe = document.createElement('iframe');
+        iframe.style.display = 'none'
+        iframe.src = path
+        document.body.appendChild(iframe);
+        iframe.contentWindow.focus();
+        iframe.contentWindow.print();
+
+    }
+</script>
