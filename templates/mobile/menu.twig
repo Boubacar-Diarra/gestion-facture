@@ -1,0 +1,63 @@
+<header>
+    <nav>
+        <div class="row ">
+            <div class="col-1">
+                <div id="menu-btn" style="display: block">
+                    <span style="background-color: whitesmoke; height: 2px; width: 20px; display: block; margin: 5px"></span>
+                    <span style="background-color: whitesmoke; height: 2px; width: 20px; display: block; margin: 5px"></span>
+                    <span style="background-color: whitesmoke; height: 2px; width: 20px; display: block; margin: 5px"></span>
+                </div>
+            </div>
+            <div class="col"></div>
+            <div class="col"></div>
+        </div>
+        <div class="row" id="menu-element" style="display: none">
+            <div class="col"><span data-target="#ClientModal" data-toggle="modal">Clients</span></div>
+            <div class="col"><span data-toggle="modal" data-target="#CommandeModal">Commandes</span></div>
+            <div class="col"><span data-toggle="modal" data-target="#FactureModal">Factures</span></div>
+            <div class="col"><span data-target="#ProduitModal" data-toggle="modal">Produits</span></div>
+            <div class="col"><span data-toggle="modal" data-target="#FournisseurModal">Fournisseur</span></div>
+            <div class="col">
+                <a href="{{ path('logout') }}" >
+                    <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-box-arrow-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M11.646 11.354a.5.5 0 0 1 0-.708L14.293 8l-2.647-2.646a.5.5 0 0 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0z"/>
+                        <path fill-rule="evenodd" d="M4.5 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5z"/>
+                        <path fill-rule="evenodd" d="M2 13.5A1.5 1.5 0 0 1 .5 12V4A1.5 1.5 0 0 1 2 2.5h7A1.5 1.5 0 0 1 10.5 4v1.5a.5.5 0 0 1-1 0V4a.5.5 0 0 0-.5-.5H2a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5v-1.5a.5.5 0 0 1 1 0V12A1.5 1.5 0 0 1 9 13.5H2z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </nav>
+</header>
+{% block javascripts %}
+    <script>
+        let menu_btn = document.getElementById('menu-btn');
+        let menu_el = document.getElementById('menu-element');
+        menu_btn.addEventListener('click', (e) => {
+            menu_el.animate(
+                [
+                    { transform: 'translateX(-1000px)' },
+                    { transform: 'translateX(0)' }
+                ], {
+                    duration: 500,
+                    fill: "forwards"
+                }
+            )
+            menu_el.style.display = 'block';
+        });
+        for (const menuElElement of menu_el.children) {
+            menuElElement.addEventListener('click', (evt) => {
+                menu_el.animate(
+                    [
+                        { transform: 'translateX(0)' },
+                        { transform: 'translateX(-2000px)' }
+                    ], {
+                        duration: 300,
+                        fill: "forwards"
+                    }
+                )
+            })
+            menu_el.style.display = 'none';
+        }
+    </script>
+{% endblock %}

@@ -18,7 +18,6 @@
             </div>
         </div>
     </div>
-</div>
 {#addClientModal#}
 <div class="modal fade" id="addClientModal" tabindex="-1" role="dialog" aria-labelledby="addCommande" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
@@ -155,11 +154,11 @@
                     <thead>
                     <tr>
                         <th>Designation</th>
-                        <th>Type</th>
-                        <th>Prix de vente</th>
-                        <th>Prix d'achat</th>
-                        <th>Quantité Acheté Fournisseur</th>
-                        <th>Quantité Stock (apres vente)</th>
+                        <th class="disparition">Type</th>
+                        <th class="disparition">Prix de vente</th>
+                        <th class="disparition">Prix d'achat</th>
+                        <th class="disparition">Quantité Acheté Fournisseur</th>
+                        <th class="disparition">Quantité Stock (apres vente)</th>
                         <th>Fournisseur</th>
                     </tr>
                     </thead>
@@ -167,11 +166,11 @@
                     {% for c in produitsRupture %}
                         <tr>
                             <td>{{ c.designation }}</td>
-                            <td>{{ c.type }}</td>
-                            <td>{{ c.prix }}</td>
-                            <td>{{ c.getProduitFournisseurs[0].montant / c.getProduitFournisseurs[0].qte}}</td>
-                            <td>{{ c.getProduitFournisseurs[0].qte }}
-                            <td>{{ c.qteStock }}</td>
+                            <td class="disparition">{{ c.type }}</td>
+                            <td class="disparition">{{ c.prix }}</td>
+                            <td class="disparition">{{ c.getProduitFournisseurs[0].montant / c.getProduitFournisseurs[0].qte}}</td>
+                            <td class="disparition">{{ c.getProduitFournisseurs[0].qte }}
+                            <td class="disparition">{{ c.qteStock }}</td>
                             <td>{{ c.getProduitFournisseurs[0].fournisseur.designation }}</td>
                         </tr>
                     {% endfor %}
@@ -194,12 +193,12 @@
                 <table class="table table-hover table-striped table-borderless">
                     <thead>
                     <tr>
-                        <td>Reference</td>
+                        <td class="disparition">Reference</td>
                         <td>Client</td>
-                        <td>Montant</td>
-                        <td>Montant Restant</td>
+                        <td class="disparition">Montant</td>
+                        <td class="disparition">Montant Restant</td>
                         <td>Etat</td>
-                        <td>Date de creation</td>
+                        <td class="disparition">Date de creation</td>
                         <td>Num Commande</td>
                     </tr>
                     </thead>
@@ -207,12 +206,12 @@
                     {% for c in facturesRetard %}
                         {% if c.commandes[0].getEtat == 'Confirmer' %}
                         <tr>
-                            <td>{{ c.id }}</td>
+                            <td class="disparition">{{ c.id }}</td>
                             <td>{{ c.commandes[0].client.nom }}</td>
-                            <td>{{ c.montant }}</td>
-                            <td>{{ c.montantRestant }}</td>
+                            <td class="disparition">{{ c.montant }}</td>
+                            <td class="disparition">{{ c.montantRestant }}</td>
                             <td>{{ c.etat }}</td>
-                            <td>{{ c.getCreatedAt|date('d/m/y') }}</td>
+                            <td class="disparition">{{ c.getCreatedAt|date('d/m/y') }}</td>
                             <td>{{ c.commandes[0].id }}</td>
                         {% endif %}
                     {% endfor %}
@@ -235,9 +234,9 @@
                     <thead>
                     <tr>
                         <td>Designation</td>
-                        <td>Fournisseurs</td>
-                        <td>Type</td>
-                        <td>Prix</td>
+                        <td class="disparition">Fournisseurs</td>
+                        <td class="disparition">Type</td>
+                        <td class="disparition">Prix</td>
                         <td>Frequence (%)</td>
                     </tr>
                     </thead>
@@ -245,9 +244,9 @@
                     {% for c in produitsDemande %}
                         <tr>
                             <td>{{ c.designation }}</td>
-                            <td>{{ c.getProduitFournisseurs[0].fournisseur.designation }}</td>
-                            <td>{{ c.type }}</td>
-                            <td>{{ c.prix }}</td>
+                            <td class="disparition">{{ c.getProduitFournisseurs[0].fournisseur.designation }}</td>
+                            <td class="disparition">{{ c.type }}</td>
+                            <td class="disparition">{{ c.prix }}</td>
                             <td>{{ c.frequence}}</td>
                         </tr>
                     {% endfor %}

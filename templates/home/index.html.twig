@@ -8,18 +8,18 @@
             justify-content: center;
             align-items: center;
             background-color: #F5F4F9;
-            margin: auto;
-            height: 100vh;
+            min-height: 100vh;
             font-family: 'Comfortaa', cursive;
             color: white;
         }
         .s-container{
+            margin: 10px;
             background-color: #151528;
             /*background-color: #151528;*/
             width: 95vw;
             height: 90vh;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-            overflow: auto;
+            overflow-y: scroll;
         }
         .modal{
             color: black;
@@ -57,12 +57,12 @@
             transform: scaleX(1);
         }
         ::-webkit-scrollbar{
-            background-color: #023059;
+            background-color: #151528;
             width: 5px;
             border-radius: 5px;
         }
         ::-webkit-scrollbar-thumb{
-            background-color: #F2CAA7;
+            background-color: #151528;
         }
         .btn{
             background-color: #023059;
@@ -72,7 +72,7 @@
             transition: 0.5s;
             cursor: pointer;
             color: black;
-            background-color: white;
+            background-color: whitesmoke;
             padding: 20px;
             text-align: center;
             box-shadow: 2px 2px 0 rgba(17, 17, 17, 0.38);
@@ -99,19 +99,107 @@
         .modal-body{
             background-color: whitesmoke;
         }
+        .mobile{
+            display: none;
+        }
+        @media screen and (max-width: 1300px){
+            .s-container{
+                margin: 0;
+                width: 100%;
+                height: 100vh;
+            }
+            body{
+                background-color: #151528;
+                display: block;
+                margin: auto;
+            }
+            .diminue-marge{
+               display: block;
+                margin: 30px;
+            }
+            .disparition{
+                display: none;
+                margin: 0;
+            }
+            .separation{
+
+            }
+            .s-card img{
+                display: none;
+
+            }
+            .mobile .s-card{
+                padding: 20px;
+                margin: 10px 200px;
+                min-width: 300px;
+                max-width: 300px;
+                min-height: 100px;
+            }
+            .mobile{
+                display: block;
+            }
+            .dashbord{
+                display: flex;
+                justify-content: space-around;
+                align-content: center;
+                flex-wrap: wrap;
+
+                /*background-image: url("{{ asset('img/bg_mobile.svg') }}");
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center;*/
+                min-height: 60vh;
+            }
+            .alter-color{
+                #background-color: #f2caa7;
+                background-color: rgba(242, 202, 167, 0.9);
+            }
+            .no-alter-color{
+                background-color: rgba(255, 255, 255, 0.9);
+            }
+        }
+        @media screen and (max-width: 600px) {
+            .dashbord{
+                background-image: none;
+            }
+
+        }
+        #menu-element{
+            position: fixed;
+            left: 0;
+            top: 0;
+            background-color: rgba(242, 202, 167, 0.7);
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            color: #023059;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        #menu-element .col{
+            /*transition: 0.25s;*/
+            margin: 30px;
+        }
+        /*#menu-element .col:hover{
+            transform: translateX(30px);
+        }*/
+        .modal-content{
+            overflow: auto;
+        }
     </style>
 {% endblock %}
 {% block body %}
     {% include 'coummun/homeModals.twig' %}
-    {% include "coummun/modals.twig" %}
+    {% include "coummun/modals.twig"%}
     <div class="s-container">
-        <header>
+        {# gestion de la partie pc #}
+        <header class="disparition">
             <nav>
-                <div class="row">
+                <div class="row separation">
                     <div class="col"><a href="#">G~F</a></div>
                     <div class="col"></div>
                     <div class="col"></div>
-                    <div class="col"></div>
+                    <div class="col "></div>
                     <div class="col"><a href="#" data-target="#ClientModal" data-toggle="modal">Clients</a></div>
                     <div class="col"><a href="#" data-toggle="modal" data-target="#CommandeModal">Commandes</a></div>
                     <div class="col"><a href="#" data-toggle="modal" data-target="#FactureModal">Factures</a></div>
@@ -129,8 +217,8 @@
                 </div>
             </nav>
         </header>
-        <br>
-        <div class="container">
+        <br class="disparition">
+        <div class="container disparition">
             <br>
             <h3>Accès rapide</h3>
             <br>
@@ -151,6 +239,15 @@
                     <div class="s-card" data-target="#ppaModal" data-toggle="modal"><img src="{{ asset('img/frequence.png') }}">Produits les plus fréquents</div>
                 </div>
             </div>
+        </div>
+
+        {# gestion de la partie mobile #}
+
+        <div class="container-fluid mobile" style="padding: 0">
+            {% include "mobile/menu.twig" %}
+            <br>
+            <br>
+            {% include "mobile/dashbord.twig" %}
         </div>
     </div>
 {% endblock %}

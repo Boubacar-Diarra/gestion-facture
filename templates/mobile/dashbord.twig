@@ -1,0 +1,14 @@
+<div class="dashbord">
+    <div class="row">
+        <div class="s-card alter-color" data-target="#prsModal" data-toggle="modal"><img alt="productOut" src="{{ asset('img/productOut.png') }}">Produits en rupture de stocks</div>
+    </div>
+    <div class="row">
+        <div class="s-card no-alter-color" data-target="#frModal" data-toggle="modal"><img alt="facture" src="{{ asset('img/facture.png') }}">Factures ayant un retard superieur à 1 mois</div>
+    </div>
+    <div class="row">
+        <div class="s-card alter-color"><img alt="tva" src="{{ asset('img/tva.png') }}">TVA (3 derniers mois) : {{ tva}} </div>
+    </div>
+    <div class="row">
+        <div class="s-card no-alter-color" data-target="#ppaModal" data-toggle="modal"><img src="{{ asset('img/frequence.png') }}">Produits les plus fréquents</div>
+    </div>
+</div>
