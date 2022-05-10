@@ -3,3 +3,6 @@ Les fonctionnalités  développées:
 - passation des commandes par les clients
 - gestion des stocks de produit
 - génération de facture.
+
+<br/>
+Projet effectué en binôme dans le cadre du modèle de développement Web.
